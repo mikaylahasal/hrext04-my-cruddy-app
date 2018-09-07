@@ -38,43 +38,35 @@
   * denotes on my to do for the project
   2.5 days = 20 hours
 
-  ### difficulty scale 1-10. 1 meaning it's already finished 10 meaning what?!?!
+  ### knowledge scale 1-10.
+  1-5 very familiar (spend none to little time researching)
+  6-8 some knowledge (spend some time researching)
+  9-10 no knowledge (spend a lot of time researching)
+  
+  (7)categorized titles (7-8 hours)
+    (5)format display of items in a list under each category
+    (7)time stamps
+    (7)color coded priority 
+      different color for different type of workout
+      different color for diff type of meal (vegetarian or not)
+  
+  (7)category pages (show/hide trick) (2 hours)
+    can click on category and hide all other items
+  
+  (9)upload file/img (3-4 hours)
+    can upload vid/pics to show meal/workout
+  
+  (8)add comment to items (1-2 hours)
 
-  5 = 3 hours
-  7 = 5 hours
-  10 = full day + ??
-
-  *(5) add due date
-  *(7) time stamps (moment.js)
-  (5) format the display of the items in a list (need to add more detail)
-  (??) fix the layout
-  (7) color coded priority
-  highlight certain items
-  mouse over to see details
-  ability to select and delete multiple items (checkbox?)
-  add status/priorty and allow for sorting based on status/priority
-  Item categories
-  ability to add/leave comments on item
-  upload files/images
-  share item
-  drag and drop to arrange
-  search/filter on keyup/keydown
-  reminders? (push operation?)
-  secret corgi
-  delete item confirmation
-  fillet edges of boxes
-  font changes/choices? (google fonts)
-  Panic Button
-  Highlight based on status/priority/due date
-  options page (ability to set/toggle options)
-  show deleted items and allow for undelete
-  pagination (if more than 10 show a next button)
-  category pages (not really pages, just a show/hide trick)
-  strike-through completed/deleted items (styling)
-  add more items button, that shows another input section allowing for multiple items to be added at once
-  Fun stuff
-  auto-complete when searching/filtering
-
+  (5)highlight certain items (1 hour)
+    user can highlight fav meals/workouts
+  
+  (9)drag and drop to arrange items (3-4 hours)
+    move items to correct category
+  
+  (5)delete item confirmation (1 hour)
+  
+  (6)font changes/choices (google fonts) (1-2 hours)
 
 
 
