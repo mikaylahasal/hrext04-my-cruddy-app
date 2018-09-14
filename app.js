@@ -3,7 +3,7 @@ $(document).ready(function() {
   var addInputs = function() {
    
     var keys = Object.keys(localStorage); //["leg workout", "shoulder workout", 'hi']
-    
+    console.log(keys);
     var $workouts = $('.workouts');
     $workouts.html('');
 
@@ -22,7 +22,7 @@ $(document).ready(function() {
         var workoutName = workoutObj.workoutName;
         var workoutReps = workoutObj.workoutReps;
           
-        $workout.text(keys[i]);
+        $workout.html('<h4 class = "workoutKeys"> ' + keys[i] + '</h4>');
         $workout.prependTo($workoutBox);
         $eachWorkout.html('Workout Name: ' + workoutName + '<br/> Sets x Reps: ' + workoutReps);
         $eachWorkout.appendTo($workoutBox);
@@ -35,12 +35,12 @@ $(document).ready(function() {
           var $eachMeal = $('<div class = "eachMeal"></div>');
       
           var mealObj = JSON.parse(localStorage[keys[i]]);
-          var mealDescription = mealObj.mealDescription;
+          var mealName = mealObj.mealName
           var mealRecipe = mealObj.mealRecipe;
           
-          $meal.text(keys[i]);
+          $meal.html('<h4 class = "mealKeys">' + keys[i] + '</h4');
           $meal.prependTo($mealBox);
-          $eachMeal.html('Meal description: ' + mealDescription  +  "<br/> Meal Recipe: " + mealRecipe);
+          $eachMeal.html('Meal Name: ' + mealName  +  "<br/> Meal Recipe: " + mealRecipe);
           $eachMeal.appendTo($mealBox);
           $mealBox.appendTo($meals);
           console.log(localStorage);
@@ -81,6 +81,7 @@ $(document).ready(function() {
 
     $(".add-meal-btn").on("click", function() {
     
+    // var mealArr = [];
     var mealObj = {};
 
     let mealType = $(".user-input-mealType").val();
@@ -94,30 +95,67 @@ $(document).ready(function() {
       $(".user-input-mealName").val("");
       $(".user-input-mealIng").val("");
 
-      mealObj['mealDescription'] = mealDescription;
+      mealObj['mealName'] = mealName;
       mealObj['mealRecipe'] = mealRecipe;
 
+      // mealArr.push(mealObj);
+      // //IF KEY DOESNT EXIST, CREATE NEW OBJ
+      // if (localStorage.mealArr) {
       localStorage.setItem(mealType, JSON.stringify(mealObj));
+      // } else if(localStorage.mealType) {
 
+      }
       var localStorageKeys = Object.keys(localStorage);
       var $meals = $('.meals');
       $meals.html('');
 
       
       addInputs();
-    }
   });
 
 
-   $(".del-text-btn").on("click", function() {
-     alert('item deleted? check the console'); // maybe change to a window.confirm
-     localStorage.removeItem( $('.user-input-title').val() ); // grab the title and plop here
-     $(".user-input-title").val("");
-     $(".user-input-body").val("");
+   $(".del-workout-btn").on("click", function() {
+     alert('Item Deleted'); 
+     localStorage.removeItem( $('.user-input-workoutType').val()); // grab the title and plop here
+     $(".user-input-workout").val("");
+     $(".user-input-workoutName").val("");
+     $(".user-input-reps").val("");
      // clearing display? what if I have multiple items?
      // after item is removed from local storage, redisplay items from local storage
      // refresh from storage?
    });
+
+  var selectWorkout = function (workoutType) {
+      $(".workoutBox").not("div:contains('" + workoutType + "')").hide()
+  };
+  $(document).on("click", "h4.workoutKeys", function() {
+      selectWorkout($(this).text());
+  })
+
+  
+  var selectMeal = function (mealType) {
+      $(".mealBox").not("div:contains('" + mealType + "')").hide()
+   };
+  $(document).on("click", "h4.mealKeys", function() {
+      selectMeal($(this).text());
+  })
+
+  $(".workout").click(function(e) {
+    var workoutObj = JSON.parse(localStorage.getItem(e.target.innerText));
+    
+    $(".user-input-workout").val(e.target.innerText);
+    $(".user-input-workoutName").val(workoutObj.workoutName);
+    $(".user-input-reps").val(workoutObj.workoutReps);
+  })
+
+  $(".meal").click(function(e) {
+    var mealObj = JSON.parse(localStorage.getItem(e.target.innerText));
+    
+    $(".user-input-mealType").val(e.target.innerText);
+    $(".user-input-mealName").val(mealObj.mealName);
+    $(".user-input-mealIng").val(mealObj.mealRecipe);
+  })
+
 
 
 

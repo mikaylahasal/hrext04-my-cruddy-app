@@ -13,27 +13,38 @@ h1{
 	display: inline-block;
 }
 
+
 .mealContainer{
 	font-family: Times New Roman;
-	border: 1px solid black;
+	border: 3px solid black;
 	width: 350px;
 	padding: 10px;
 	display: inline-block;
-	height: 100px;
+	height: 175px;
+	vertical-align: top;
 }
 
 .workoutContainer{
 	font-family: Times New Roman;
-	border: 1px solid black;
+	border: 3px solid black;
 	width: 350px;
 	padding: 10px;
 	display: inline-block;
-	height: 100px;
+	height: 175px;
+	vertical-align: top;
+}
+
+label{
+display: inline-block;
+width:200px;
+margin-right:30px;
+text-align:center;
 }
 
 .meals{
 	font-family: Times New Roman;
-	border: 1px solid black;
+	border: 3px solid black;
+	border-top: 0px;
 	width: 350px;
 	padding: 10px;
 	display: inline-block;
@@ -43,7 +54,8 @@ h1{
 
 .workouts{
 	font-family: Times New Roman;
-	border: 1px solid black;
+	border: 3px solid black;
+	border-top: 0px;
 	width: 350px;
 	padding: 10px;
 	display: inline-block;
@@ -81,10 +93,32 @@ h4{
 	font-size: 16px;
 }
 
+h4:hover {
+  color: #6E6E6E;
+  text-decoration: underline #6E6E6E;
+}
+
+.mealBox:hover {
+  -webkit-transform: scale(1.05);
+  -ms-transform: scale(1.05);
+  transform: scale(1.05);
+  -webkit-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+  border: 5px solid #6E6E6E
+}
 .mealBox{
 	font-family: Times New Roman;
 	border: 1px solid black;
 	padding: 5px;
+}
+
+.workoutBox:hover {
+  -webkit-transform: scale(1.05);
+  -ms-transform: scale(1.05);
+   transform: scale(1.05);
+   -webkit-transition-duration: 0.5s;
+   transition-duration: 0.5s;
+   border:5px solid #6E6E6E;
 }
 
 .workoutBox{
