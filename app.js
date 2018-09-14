@@ -127,9 +127,9 @@ $(document).ready(function() {
   });
 
 
-   $(".del-workout-btn").on("click", function() {
-     var target = selectedWorkout.target.id;
-     var targetType = selectedWorkout.target.parentElement.childNodes[0].innerText;
+   $(".del-workout-btn").on("click", function(e) {
+     var target = e.target.id;
+     var targetType = e.target.parentElement.childNodes[0].innerText;
      var workoutArr = localStorage.getItem(targetType);
      alert('Item Deleted'); 
      console.log(localStorage)
@@ -166,7 +166,6 @@ $(document).ready(function() {
           localStorage.removeItem('.user-input-workout')
         }
     }
-    selectedWorkout = e;
     var workType = e.target.parentElement.childNodes[0].innerText;
     var workName = e.target.childNodes[0].data;
     console.log(workName);
