@@ -24,7 +24,7 @@ $(document).ready(function() {
           
         $workout.html('<h4 class = "workoutKeys"> ' + keys[i] + '</h4>');
         $workout.prependTo($workoutBox);
-        $eachWorkout.html('Workout Name: ' + workoutName + '<br/> Sets x Reps: ' + workoutReps);
+        $eachWorkout.html('<b>Workout Name: </b>' + workoutName + '<br/> <b>Sets x Reps: </b>' + workoutReps + '<br/> <b>Date: </b>' + new Date());
         $eachWorkout.appendTo($workoutBox);
         $workoutBox.appendTo($workouts);
 
@@ -40,7 +40,7 @@ $(document).ready(function() {
           
           $meal.html('<h4 class = "mealKeys">' + keys[i] + '</h4');
           $meal.prependTo($mealBox);
-          $eachMeal.html('Meal Name: ' + mealName  +  "<br/> Meal Recipe: " + mealRecipe);
+          $eachMeal.html('<b>Meal Name: </b>' + mealName  +  "<br/> <b>Meal Recipe: </b>" + mealRecipe + '<br/> <b>Date: </b>' + new Date());
           $eachMeal.appendTo($mealBox);
           $mealBox.appendTo($meals);
           console.log(localStorage);
