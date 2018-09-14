@@ -81,7 +81,6 @@ $(document).ready(function() {
 
     $(".add-meal-btn").on("click", function() {
     
-    // var mealArr = [];
     var mealObj = {};
 
     let mealType = $(".user-input-mealType").val();
@@ -98,11 +97,8 @@ $(document).ready(function() {
       mealObj['mealName'] = mealName;
       mealObj['mealRecipe'] = mealRecipe;
 
-      // mealArr.push(mealObj);
-      // //IF KEY DOESNT EXIST, CREATE NEW OBJ
-      // if (localStorage.mealArr) {
       localStorage.setItem(mealType, JSON.stringify(mealObj));
-      // } else if(localStorage.mealType) {
+
 
       }
       var localStorageKeys = Object.keys(localStorage);
@@ -116,10 +112,21 @@ $(document).ready(function() {
 
    $(".del-workout-btn").on("click", function() {
      alert('Item Deleted'); 
-     localStorage.removeItem( $('.user-input-workoutType').val()); // grab the title and plop here
+     localStorage.removeItem($('.user-input-workout').val()); // grab the title and plop here
      $(".user-input-workout").val("");
      $(".user-input-workoutName").val("");
      $(".user-input-reps").val("");
+     // clearing display? what if I have multiple items?
+     // after item is removed from local storage, redisplay items from local storage
+     // refresh from storage?
+   });
+
+    $(".del-meal-btn").on("click", function() {
+     alert('Item Deleted'); 
+     localStorage.removeItem($('.user-input-mealType').val()); // grab the title and plop here
+     $(".user-input-mealType").val("");
+     $(".user-input-mealName").val("");
+     $(".user-input-mealIng").val("");
      // clearing display? what if I have multiple items?
      // after item is removed from local storage, redisplay items from local storage
      // refresh from storage?

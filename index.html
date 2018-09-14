@@ -17,43 +17,44 @@
   <div class = "Container">
     <h1> My Fitness Organizer </h1>
 
-    <div class ="inputContainer">
+  <div class ="inputContainer">
      
       <div class = "workoutContainer">
+        <center>
+        <div>
+           <label>Type of Workout:</label><input type="text" class="user-input-workout" placeholder="Back, Legs, Chest... etc. Workout"></input>
+        </div>
+        <div> 
+           <label>Name of Workout:</label><input type="text" class ="user-input-workoutName" placeholder="Workout Name"></input>
+        </div>
+        <div>
+           <label>Sets x Reps:</label><input type="text" class ="user-input-reps" placeholder="Sets x Reps"></input>
+        </div>
 
-        <div> Type of Workout
-          <input type="text" class="user-input-workout" placeholder="Back, Legs, Chest... etc. Workout"></input>
-        </div>
-        <div> Name of Workout
-          <input type="text" class ="user-input-workoutName" placeholder="Workout Name"></input>
-        </div>
-        <div> Sets x Reps 
-          <input type="text" class ="user-input-reps" placeholder="Sets x Reps"></input>
-        </div>
-      
         <button class="add-workout-btn">Add Workout</button>
         <button class="del-workout-btn">Delete Workout</button>
-      
+        </center>
       </div>
 
       <div class = "mealContainer">
 
-        <div> Type of Meal
-          <input type="text" class="user-input-mealType" placeholder="Breakfast, Lunch, Dinner?">
+        <center>
+        <div>
+          <label>Type of Meal:</label> <input type="text" class="user-input-mealType" placeholder="Breakfast, Lunch, Dinner?">
         </div>
-        <div> Name of Meal
-          <input type="text" class ="user-input-mealName" placeholder="Name of Meal"></textarea>
+        <div>
+          <label>Name of Meal:</label><input type="text" class ="user-input-mealName" placeholder="Name of Meal"></input>
         </div>
-        <div> Recipe
-          <input type="text" class ="user-input-mealIng" placeholder="Name of Meal"></textarea>
+        <div> 
+          <label>Recipe:</label><textarea class ="user-input-mealIng" placeholder="Recipe"> </textarea>
         </div>
+
        
         <button class="add-meal-btn">Add Meal</button>
         <button class="del-meal-btn">Delete Meal</button>
-      
+        </center>
       </div>
-    
-    </div>
+  </div>
 
     <div class = "workouts"> 
     </div>
