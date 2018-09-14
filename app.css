@@ -107,10 +107,13 @@ h4:hover {
   border: 5px solid #6E6E6E
 }
 .mealBox{
+	height: 130px;
+	overflow: auto;
 	font-family: Times New Roman;
 	border: 1px solid black;
 	padding: 5px;
 }
+
 
 .workoutBox:hover {
   -webkit-transform: scale(1.05);
@@ -122,6 +125,7 @@ h4:hover {
 }
 
 .workoutBox{
+	height: 130px;
 	font-family: Times New Roman;
 	border: 1px solid black;
 	padding:5px;

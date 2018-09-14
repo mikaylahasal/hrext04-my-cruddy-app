@@ -151,17 +151,27 @@ $(document).ready(function() {
       selectMeal($(this).text());
   })
 
-  $(".workout").click(function(e) {
-    var workoutObj = JSON.parse(localStorage.getItem(e.target.innerText));
-    // var keys = Object.keys(localStorage);
-    // for(var i = 0; i < keys.length; i ++) {
-    //   var workoutArray = JSON.parse(localStorage[keys[i]]);
-    // }
-    // console.log(workoutArray);
-    $(".user-input-workout").val(e.target.innerText);
-    $(".user-input-workoutName").val((workoutArray[i]).workoutName);
-    $(".user-input-reps").val((workoutArray[i]).workoutReps);
-  })
+  $(".workoutBox").on("click", ".eachWorkout", function(e) {
+    var keys = Object.keys(localStorage);
+    for(var i = 0; i < keys.length; i++){
+        if(keys[i] === workType) {
+          localStorage.removeItem('.user-input-workout')
+        }
+    }
+    var workType = e.target.parentElement.childNodes[0].innerText;
+    var workName = e.target.childNodes[0].data;
+    console.log(workName);
+    workName = workName.slice(14);
+    console.log(workName)
+
+    var workReps = e.target.childNodes[2].data;
+    workReps = workReps.slice(14)
+    console.log(workReps);
+
+    $(".user-input-workout").val(workType);
+    $(".user-input-workoutName").val(workName);
+    $(".user-input-reps").val(workReps);
+  });
 
   $(".meal").click(function(e) {
     var mealObj = JSON.parse(localStorage.getItem(e.target.innerText));
