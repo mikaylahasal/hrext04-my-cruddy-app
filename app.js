@@ -132,6 +132,7 @@ $(document).ready(function() {
      var targetType = selectedWorkout.target.parentElement.childNodes[0].innerText;
      var workoutArr = localStorage.getItem(targetType);
      alert('Item Deleted'); 
+     console.log(localStorage)
      console.log(target, targetType, selectedWorkout, workoutArr);
      workoutArr.splice(target, 1); // grab the title and plop here
 
