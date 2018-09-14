@@ -1,3 +1,4 @@
+// var selectedWorkout = undefined;
 $(document).ready(function() {
   
   var addInputs = function() {
@@ -14,12 +15,12 @@ $(document).ready(function() {
       
       if((keys[i]).includes('workout') || (keys[i]).includes('Workout')) {
 
-    //ISSUES WHEN ADDING ARRAY  
+  
         var workoutArray = JSON.parse(localStorage[keys[i]]);
         for(var j = 0; j < workoutArray.length; j++) {
           var $workoutBox = $('<div class = "workoutBox"></div>');
           var $workout = $('<div class = "workout"></div>');
-          var $eachWorkout = $('<div class = "eachWorkout"></div>');
+          var $eachWorkout = $('<div id=' + j.toString() + ' class = "eachWorkout"></div>');
          
           var workoutName = (workoutArray[j]).workoutName;
           var workoutReps = (workoutArray[j]).workoutReps;
@@ -71,7 +72,7 @@ $(document).ready(function() {
       $(".user-input-workout").val("");
       $(".user-input-workoutName").val("");
       $(".user-input-reps").val("");
-
+      
       workoutObj['workoutName'] = workoutName;
       workoutObj['workoutReps'] = workoutReps;
 
@@ -83,6 +84,7 @@ $(document).ready(function() {
         (newWorkoutArr).push(workoutObj);
         localStorage.setItem(workoutType, JSON.stringify(newWorkoutArr));
       }
+      console.log(workoutType);
  
       var $workouts = $('.workouts');
       $workouts.html('');
@@ -126,8 +128,13 @@ $(document).ready(function() {
 
 
    $(".del-workout-btn").on("click", function() {
+     var target = selectedWorkout.target.id;
+     var targetType = selectedWorkout.target.parentElement.childNodes[0].innerText;
+     var workoutArr = localStorage.getItem(targetType);
      alert('Item Deleted'); 
-     localStorage.removeItem( $('.user-input-workoutType').val()); // grab the title and plop here
+     console.log(target, targetType, selectedWorkout, workoutArr);
+     workoutArr.splice(target, 1); // grab the title and plop here
+
      $(".user-input-workout").val("");
      $(".user-input-workoutName").val("");
      $(".user-input-reps").val("");
@@ -158,6 +165,7 @@ $(document).ready(function() {
           localStorage.removeItem('.user-input-workout')
         }
     }
+    selectedWorkout = e;
     var workType = e.target.parentElement.childNodes[0].innerText;
     var workName = e.target.childNodes[0].data;
     console.log(workName);
