@@ -1,9 +1,9 @@
 $(document).ready(function() {
   
   var addInputs = function() {
-   
+    
     var keys = Object.keys(localStorage); //["leg workout", "shoulder workout", 'hi']
-    console.log(keys);
+  
     var $workouts = $('.workouts');
     $workouts.html('');
 
@@ -14,36 +14,42 @@ $(document).ready(function() {
       
       if((keys[i]).includes('workout') || (keys[i]).includes('Workout')) {
 
-        var $workoutBox = $('<div class = "workoutBox"></div>');
-        var $workout = $('<div class = "workout"></div>');
-        var $eachWorkout = $('<div class = "eachWorkout"></div>');
-            
-        var workoutObj = JSON.parse(localStorage[keys[i]]);
-        var workoutName = workoutObj.workoutName;
-        var workoutReps = workoutObj.workoutReps;
-          
+    //ISSUES WHEN ADDING ARRAY  
+        var workoutArray = JSON.parse(localStorage[keys[i]]);
+        for(var j = 0; j < workoutArray.length; j++) {
+          var $workoutBox = $('<div class = "workoutBox"></div>');
+          var $workout = $('<div class = "workout"></div>');
+          var $eachWorkout = $('<div class = "eachWorkout"></div>');
+         
+          var workoutName = (workoutArray[j]).workoutName;
+          var workoutReps = (workoutArray[j]).workoutReps;
+        
         $workout.html('<h4 class = "workoutKeys"> ' + keys[i] + '</h4>');
         $workout.prependTo($workoutBox);
         $eachWorkout.html('Workout Name: ' + workoutName + '<br/> Sets x Reps: ' + workoutReps);
         $eachWorkout.appendTo($workoutBox);
         $workoutBox.appendTo($workouts);
+        }
+          
+        
 
       } else if((keys[i]).includes('Breakfast') || (keys[i]).includes('Lunch') || (keys[i]).includes('Dinner')) {
+          var mealArray = JSON.parse(localStorage[keys[i]]);
+          for(var k = 0; k < mealArray.length; k++) {
+            var $mealBox = $('<div class = "mealBox"></div>');
+            var $meal = $('<div class = "meal"></div>');
+            var $eachMeal = $('<div class = "eachMeal"></div>');
 
-          var $mealBox = $('<div class = "mealBox"></div>');
-          var $meal = $('<div class = "meal"></div>');
-          var $eachMeal = $('<div class = "eachMeal"></div>');
-      
-          var mealObj = JSON.parse(localStorage[keys[i]]);
-          var mealName = mealObj.mealName
-          var mealRecipe = mealObj.mealRecipe;
-          
-          $meal.html('<h4 class = "mealKeys">' + keys[i] + '</h4');
-          $meal.prependTo($mealBox);
-          $eachMeal.html('Meal Name: ' + mealName  +  "<br/> Meal Recipe: " + mealRecipe);
-          $eachMeal.appendTo($mealBox);
-          $mealBox.appendTo($meals);
-          console.log(localStorage);
+
+            var mealName = (mealArray[k]).mealName
+            var mealRecipe = (mealArray[k]).mealRecipe;
+           
+            $meal.html('<h4 class = "mealKeys">' + keys[i] + '</h4');
+            $meal.prependTo($mealBox);
+            $eachMeal.html('Meal Name: ' + mealName  +  "<br/> Meal Recipe: " + mealRecipe);
+            $eachMeal.appendTo($mealBox);
+            $mealBox.appendTo($meals);
+          }     
       }
     }
   }
@@ -52,7 +58,7 @@ $(document).ready(function() {
   
 
   $(".add-workout-btn").on("click", function() {
-    
+    var workoutArr = [];
     var workoutObj = {};
 
     let workoutType = $(".user-input-workout").val();
@@ -69,9 +75,15 @@ $(document).ready(function() {
       workoutObj['workoutName'] = workoutName;
       workoutObj['workoutReps'] = workoutReps;
 
-      localStorage.setItem(workoutType, JSON.stringify(workoutObj));
-
-      var localStorageKeys = Object.keys(localStorage);
+      if(!localStorage[workoutType]) {
+        workoutArr.push(workoutObj);
+        localStorage.setItem(workoutType, JSON.stringify(workoutArr));
+      } else if(localStorage[workoutType]) {
+        var newWorkoutArr = JSON.parse(localStorage[workoutType]);
+        (newWorkoutArr).push(workoutObj);
+        localStorage.setItem(workoutType, JSON.stringify(newWorkoutArr));
+      }
+ 
       var $workouts = $('.workouts');
       $workouts.html('');
 
@@ -79,9 +91,9 @@ $(document).ready(function() {
     }
   });
 
-    $(".add-meal-btn").on("click", function() {
+  $(".add-meal-btn").on("click", function() {
     
-    // var mealArr = [];
+    var mealArr = [];
     var mealObj = {};
 
     let mealType = $(".user-input-mealType").val();
@@ -98,19 +110,18 @@ $(document).ready(function() {
       mealObj['mealName'] = mealName;
       mealObj['mealRecipe'] = mealRecipe;
 
-      // mealArr.push(mealObj);
-      // //IF KEY DOESNT EXIST, CREATE NEW OBJ
-      // if (localStorage.mealArr) {
-      localStorage.setItem(mealType, JSON.stringify(mealObj));
-      // } else if(localStorage.mealType) {
-
+      if (!localStorage[mealType]) {
+        mealArr.push(mealObj);
+        localStorage.setItem(mealType, JSON.stringify(mealArr));
+      } else if(localStorage[mealType]) {
+        var newMealArr = JSON.parse(localStorage[mealType]);
+        (newMealArr).push(mealObj);
+        localStorage.setItem(mealType, JSON.stringify(newMealArr));
       }
-      var localStorageKeys = Object.keys(localStorage);
       var $meals = $('.meals');
       $meals.html('');
-
-      
       addInputs();
+    }
   });
 
 
@@ -142,10 +153,14 @@ $(document).ready(function() {
 
   $(".workout").click(function(e) {
     var workoutObj = JSON.parse(localStorage.getItem(e.target.innerText));
-    
+    // var keys = Object.keys(localStorage);
+    // for(var i = 0; i < keys.length; i ++) {
+    //   var workoutArray = JSON.parse(localStorage[keys[i]]);
+    // }
+    // console.log(workoutArray);
     $(".user-input-workout").val(e.target.innerText);
-    $(".user-input-workoutName").val(workoutObj.workoutName);
-    $(".user-input-reps").val(workoutObj.workoutReps);
+    $(".user-input-workoutName").val((workoutArray[i]).workoutName);
+    $(".user-input-reps").val((workoutArray[i]).workoutReps);
   })
 
   $(".meal").click(function(e) {
