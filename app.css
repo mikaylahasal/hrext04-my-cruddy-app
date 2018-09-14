@@ -1,0 +1,94 @@
+.body{
+	font-family: Times New Roman;
+}
+
+h1{
+	font-family: Times New Roman;
+}
+.container{
+	font-family: Times New Roman;
+	border: 2px solid black;
+	width: 800px;
+	padding: 10px;
+	display: inline-block;
+}
+
+.mealContainer{
+	font-family: Times New Roman;
+	border: 1px solid black;
+	width: 350px;
+	padding: 10px;
+	display: inline-block;
+	height: 100px;
+}
+
+.workoutContainer{
+	font-family: Times New Roman;
+	border: 1px solid black;
+	width: 350px;
+	padding: 10px;
+	display: inline-block;
+	height: 100px;
+}
+
+.meals{
+	font-family: Times New Roman;
+	border: 1px solid black;
+	width: 350px;
+	padding: 10px;
+	display: inline-block;
+	vertical-align:top;
+	min-height: 400px;
+}
+
+.workouts{
+	font-family: Times New Roman;
+	border: 1px solid black;
+	width: 350px;
+	padding: 10px;
+	display: inline-block;
+	vertical-align: top;
+	min-height: 400px;
+
+}
+
+.add-workout-btn{
+	font-family: Times New Roman;
+}
+
+.del-workout-btn{
+	font-family: Times New Roman;
+}
+
+.add-meal-btn{
+	font-family: Times New Roman;
+}
+
+.del-meal-btn{
+	font-family: Times New Roman;
+}
+
+h2{
+    font-family: Times New Roman;
+    font-size: 16px;
+ /*   display: inline-block;*/
+    border-bottom: 1px solid black;
+    padding-bottom: 10px;
+}
+
+h4{
+	font-family: Times New Roman;
+	font-size: 16px;
+}
+
+.mealBox{
+	font-family: Times New Roman;
+	border: 1px solid black;
+	padding: 5px;
+}
+
+.workoutBox{
+	font-family: Times New Roman;
+	border: 1px solid black;
+	padding:5px;
+}

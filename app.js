@@ -1,48 +1,113 @@
 $(document).ready(function() {
+  
+  var addInputs = function() {
+   
+    var keys = Object.keys(localStorage); //["leg workout", "shoulder workout", 'hi']
+    
+    var $workouts = $('.workouts');
+    $workouts.html('');
 
+    var $meals = $('.meals');
+    $meals.html('');
 
-  $(".add-text-btn").on("click", function(){
+    for(var i = 0; i < keys.length; i ++) {
+      
+      if((keys[i]).includes('workout') || (keys[i]).includes('Workout')) {
 
-    // store values
-    let inputKey = $(".user-input-title").val();
-    let inputValue = $(".user-input-body").val();
+        var $workoutBox = $('<div class = "workoutBox"></div>');
+        var $workout = $('<div class = "workout"></div>');
+        var $eachWorkout = $('<div class = "eachWorkout"></div>');
+            
+        var workoutObj = JSON.parse(localStorage[keys[i]]);
+        var workoutName = workoutObj.workoutName;
+        var workoutReps = workoutObj.workoutReps;
+          
+        $workout.text(keys[i]);
+        $workout.prependTo($workoutBox);
+        $eachWorkout.html('Workout Name: ' + workoutName + '<br/> Sets x Reps: ' + workoutReps);
+        $eachWorkout.appendTo($workoutBox);
+        $workoutBox.appendTo($workouts);
 
-    // clear values
-    $(".user-input-title").val("");
-    $(".user-input-body").val("");
+      } else if((keys[i]).includes('Breakfast') || (keys[i]).includes('Lunch') || (keys[i]).includes('Dinner')) {
 
-    console.log(inputKey, inputValue);
+          var $mealBox = $('<div class = "mealBox"></div>');
+          var $meal = $('<div class = "meal"></div>');
+          var $eachMeal = $('<div class = "eachMeal"></div>');
+      
+          var mealObj = JSON.parse(localStorage[keys[i]]);
+          var mealDescription = mealObj.mealDescription;
+          var mealRecipe = mealObj.mealRecipe;
+          
+          $meal.text(keys[i]);
+          $meal.prependTo($mealBox);
+          $eachMeal.html('Meal description: ' + mealDescription  +  "<br/> Meal Recipe: " + mealRecipe);
+          $eachMeal.appendTo($mealBox);
+          $mealBox.appendTo($meals);
+          console.log(localStorage);
+      }
+    }
+  }
 
-    localStorage.setItem(inputKey, inputValue);
-    // data-
-    let itemHtml = '<div class="display-item" data-storage-key="'+inputKey+'"> ' + inputKey + ' ' +  localStorage.getItem(inputKey) + '</div>';
-    $(".display").html(itemHtml);
-    //console.log(localStorage);
-    // how can we delegate this event to the outer html node?
-    // https://learn.jquery.com/events/event-delegation/
+  addInputs();
+  
 
-    $(".display-item").on("click", function(e){
-      // plop the key:value back into the input boxes
+  $(".add-workout-btn").on("click", function() {
+    
+    var workoutObj = {};
 
-      // get the values from the the divs?
-      console.log("key=> ", e.target.dataset.storageKey); // user-input-title
-      localStorage.getItem(e.target.dataset.storageKey); // user-input-body
+    let workoutType = $(".user-input-workout").val();
+    let workoutName = $(".user-input-workoutName").val();
+    let workoutReps = $(".user-input-reps").val();
 
-      // set those values in the form fields
-      $(".user-input-title").val(e.target.dataset.storageKey);
-      $(".user-input-body").val(localStorage.getItem(e.target.dataset.storageKey));
-    });
+    if(workoutType === "" || workoutName === "" || workoutReps === "") {
+      alert('All fields are required')
+    } else {
+      $(".user-input-workout").val("");
+      $(".user-input-workoutName").val("");
+      $(".user-input-reps").val("");
 
+      workoutObj['workoutName'] = workoutName;
+      workoutObj['workoutReps'] = workoutReps;
+
+      localStorage.setItem(workoutType, JSON.stringify(workoutObj));
+
+      var localStorageKeys = Object.keys(localStorage);
+      var $workouts = $('.workouts');
+      $workouts.html('');
+
+      addInputs();
+    }
   });
 
+    $(".add-meal-btn").on("click", function() {
+    
+    var mealObj = {};
 
+    let mealType = $(".user-input-mealType").val();
+    let mealName = $(".user-input-mealName").val();
+    let mealRecipe = $(".user-input-mealIng").val();
 
-   // TODO add back in later
-   // $(".user-input").on("keyup", function(){
-   //   let inputValue = $(".user-input").val();
-   //   localStorage.setItem("testStorage", inputValue);
-   //   $(".display").text(localStorage.getItem("testStorage"));
-   // });
+    if(mealType === "" || mealName === "" || mealRecipe === "") {
+      alert('All fields are required')
+    } else {
+      $(".user-input-mealType").val("");
+      $(".user-input-mealName").val("");
+      $(".user-input-mealIng").val("");
+
+      mealObj['mealDescription'] = mealDescription;
+      mealObj['mealRecipe'] = mealRecipe;
+
+      localStorage.setItem(mealType, JSON.stringify(mealObj));
+
+      var localStorageKeys = Object.keys(localStorage);
+      var $meals = $('.meals');
+      $meals.html('');
+
+      
+      addInputs();
+    }
+  });
+
 
    $(".del-text-btn").on("click", function() {
      alert('item deleted? check the console'); // maybe change to a window.confirm
@@ -53,12 +118,6 @@ $(document).ready(function() {
      // after item is removed from local storage, redisplay items from local storage
      // refresh from storage?
    });
-
-
-   // iterative approach to adding items
-   // store data as stringified array of objects
-   // store data with individual keys
-  // how do we get keys? research Object.keys
 
 
 

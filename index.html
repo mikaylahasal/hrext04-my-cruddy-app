@@ -11,14 +11,55 @@
     <script src="app.js"></script>
 
   </head>
-  <body>
+  
+  <center><body>
+  
+  <div class = "Container">
+    <h1> My Fitness Organizer </h1>
 
-  <input type="text" class="user-input-title" placeholder="Enter the Title">
-  <textarea class="user-input-body" placeholder="Enter the body of text"></textarea>
+    <div class ="inputContainer">
+     
+      <div class = "workoutContainer">
 
-  <button class="add-text-btn">add text</button>
-  <button class="del-text-btn">delete text</button>
+        <div> Type of Workout
+          <input type="text" class="user-input-workout" placeholder="Back, Legs, Chest... etc. Workout"></input>
+        </div>
+        <div> Name of Workout
+          <input type="text" class ="user-input-workoutName" placeholder="Workout Name"></input>
+        </div>
+        <div> Sets x Reps 
+          <input type="text" class ="user-input-reps" placeholder="Sets x Reps"></input>
+        </div>
+      
+        <button class="add-workout-btn">Add Workout</button>
+        <button class="del-workout-btn">Delete Workout</button>
+      
+      </div>
 
-  <div class="display"></div>
-  </body>
+      <div class = "mealContainer">
+
+        <div> Type of Meal
+          <input type="text" class="user-input-mealType" placeholder="Breakfast, Lunch, Dinner?">
+        </div>
+        <div> Name of Meal
+          <input type="text" class ="user-input-mealName" placeholder="Name of Meal"></textarea>
+        </div>
+        <div> Recipe
+          <input type="text" class ="user-input-mealIng" placeholder="Name of Meal"></textarea>
+        </div>
+       
+        <button class="add-meal-btn">Add Meal</button>
+        <button class="del-meal-btn">Delete Meal</button>
+      
+      </div>
+    
+    </div>
+
+    <div class = "workouts"> 
+    </div>
+    <div class = "meals"> 
+    </div>
+  </div>
+
+  </body></center>
 </html>
